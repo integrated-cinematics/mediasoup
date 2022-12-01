@@ -1,3 +1,8 @@
+> This fork of mediasoup adds prebuilt binaries. Tagged releases are otherwise identical to the
+> upstream repository.
+> 
+> To use this version, replace your npm install with `@show-runner/mediasoup`
+
 # mediasoup v3
 
 [![][mediasoup-banner]][mediasoup-website]
