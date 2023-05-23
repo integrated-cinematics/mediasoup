@@ -38,6 +38,7 @@ jobs:
         # TODO: Maybe fix this one day.
         if: runner.os != 'Windows'
       # Publish prebuild binaries on tag.
+      - run: npm run install-deps:node
       - run: npm run worker:tar
       - name: Upload mediasoup-worker tar
         uses: softprops/action-gh-release@v1
