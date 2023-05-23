@@ -4,9 +4,7 @@ const process = require('process');
 const os = require('os');
 const fs = require('fs');
 const { execSync, spawnSync } = require('child_process');
-const { TscWatchClient } = require('tsc-watch/client');
-const fetch = require('node-fetch');
-const tar = require('tar');
+
 const { version, repository } = require('./package.json');
 
 const IS_FREEBSD = os.platform() === 'freebsd';
@@ -101,6 +99,8 @@ async function run(task)
 
 		case 'typescript:watch':
 		{
+			const { TscWatchClient } = require('tsc-watch/client');
+
 			deleteNodeLib();
 
 			const watch = new TscWatchClient();
@@ -389,6 +389,8 @@ function ensureDir(dir)
 
 async function tarWorker()
 {
+	const tar = require('tar');
+
 	console.log('npm-scripts.js [INFO] tarWorker()');
 
 	return new Promise((resolve, reject) =>
@@ -402,6 +404,9 @@ async function tarWorker()
 
 async function downloadPrebuiltWorker()
 {
+	const fetch = require('node-fetch');
+	const tar = require('tar');
+
 	const releaseBase = process.env.MEDIASOUP_WORKER_DOWNLOAD_BASE || `${repository.url.replace('.git', '')}/releases/download`;
 	const tarUrl = `${releaseBase}/${version}/${WORKER_PREBUILD_TAR}`;
 
